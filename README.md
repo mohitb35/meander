@@ -9,9 +9,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 1. Login/Register using Unsplash oAuth
 2. Search for images
 3. Collections
-   a. List of collections
-   b. Create/Edit/Delete a collection
-   c. Add/Remove photos to/from a collection
+   1. List of collections
+   2. Create/Edit/Delete a collection
+   3. Add/Remove photos to/from a collection
 4. Liked Photos
-   a. List of liked photos
-   b. Add/Remove photos to/from Liked photos
+   1. List of liked photos
+   2. Add/Remove photos to/from Liked photos
