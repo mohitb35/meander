@@ -42,7 +42,7 @@ class Header extends React.Component {
 							<Link to="/liked">Liked</Link>
 						</li>
 						<li className="nav-link">
-							<Link to="/">Register</Link>
+							<Link to="/">Login</Link>
 						</li>
 					</ul>
 				</nav>	

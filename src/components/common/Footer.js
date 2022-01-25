@@ -4,7 +4,7 @@ import './Footer.css';
 
 const Footer = () => {
 	return (
-		<footer>Footer</footer>
+		<footer>Copyright © 2022 Mohit Bajaj</footer>
 	)
 }
 

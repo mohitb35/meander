@@ -1,0 +1,15 @@
+/* Results Grid */
+#results-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-row-gap: 10px;
+	grid-column-gap: 20px;
+	grid-auto-rows: 0; /*IMP-DO NOT CHANGE*/
+	padding: 30px 0;
+}
+
+/* To modify */
+#results-grid.loading,
+#results-grid.error {
+	display: block;
+}
