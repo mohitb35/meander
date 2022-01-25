@@ -14,11 +14,11 @@ const App = () => {
 		<div className="app">
 			<BrowserRouter>
 				<Header />
-				<div className="main">
+				<main>
 					<Route path="/" exact component={Home}/>
 					<Route path="/collections" exact component={CollectionList}/>
 					<Route path="/liked" exact component={LikedList}/>
-				</div>
+				</main>
 				<Footer />
 			</BrowserRouter>
 		</div>

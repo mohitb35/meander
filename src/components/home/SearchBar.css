@@ -1,0 +1,29 @@
+.search-bar {
+	flex: 1;
+}
+
+.search-bar input {
+	appearance: none;
+	padding: 8px 10px;
+	border: 1px solid #333333;
+	border-radius: 5px;
+	width: 100%;
+	transition: all 0.2s ease-in-out;
+}
+
+/* #page-nav button:hover {
+	background-color: #9cda45;
+	color: #333333;
+	transform: scale(1.05);
+} */
+
+.search-bar input:focus {
+	outline: transparent;
+	border: 1px solid #fbd94a;
+	box-shadow: 0 0 3px 2px rgba(228, 121, 17, 0.5);
+	transform: scaleY(1.05);
+}
+
+.search-bar input:focus::placeholder {
+	color: rgba(0, 0, 0, 0.9);
+}
