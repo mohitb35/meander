@@ -50,7 +50,7 @@ export const updatePageSize = (pageSize) => {
 
 export const fetchAccessToken = (code) => {
 	return async function(dispatch) {
-		const oauthTokenUrl = "http://localhost:3001/oauth/token";
+		const oauthTokenUrl = "https://meander-api.herokuapp.com/oauth/token";
 
 		const data = {
 			redirect_uri: 'http://localhost:3000/auth', 
@@ -60,8 +60,6 @@ export const fetchAccessToken = (code) => {
 		
 		try {
 			const response = await axios.post(oauthTokenUrl, data);
-			console.log(response.data);
-		
 			// Dispatching action
 			dispatch(signIn(response.data));
 		} catch (err) {

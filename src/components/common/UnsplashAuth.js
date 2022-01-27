@@ -7,7 +7,7 @@ import { signOut } from '../../actions';
 import './UnsplashAuth.css';
 
 const redirectUrl = encodeURIComponent("http://localhost:3000/auth");
-const oauthAuthorizeUrl = "http://localhost:3001/oauth/authorize";
+const oauthAuthorizeUrl = "https://meander-api.herokuapp.com/oauth/authorize";
 const responseType = "code"
 
 class UnsplashAuth extends React.Component {
