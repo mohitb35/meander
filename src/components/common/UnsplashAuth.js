@@ -3,42 +3,11 @@ import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 
 import { signOut } from '../../actions';
+import { generateAuthorizeUrl } from '../../utils';
 
 import './UnsplashAuth.css';
 
-const redirectUrl = encodeURIComponent("http://localhost:3000/auth");
-const oauthAuthorizeUrl = "https://meander-api.herokuapp.com/oauth/authorize";
-const responseType = "code"
-
 class UnsplashAuth extends React.Component {
-	state = {
-		isSignedIn: false,
-		attemptSignIn: false
-	};
-
-	generateAuthorizeUrl(redirectUrl) {
-		let queryStrings = 
-		`redirect_uri=${redirectUrl}&response_type=${responseType}`;
-
-		return `${oauthAuthorizeUrl}?${queryStrings}`;
-	}
-
-	componentDidMount() {
-		
-	};
-
-	onSignInClick = () => {
-		// Redirect to Authorize URL
-		this.setState({
-			attemptSignIn: true
-		})
-
-		/* this.setState({
-			isSignedIn: true
-		}) */
-		
-	}
-
 	onSignOutClick = () => {
 		this.props.signOut();
 	}
@@ -53,7 +22,7 @@ class UnsplashAuth extends React.Component {
 			)
 		} else {
 			return(
-				<a href={this.generateAuthorizeUrl(redirectUrl)} >
+				<a href={generateAuthorizeUrl()} >
 					<button className="auth-button">
 						Login with Unsplash
 					</button>

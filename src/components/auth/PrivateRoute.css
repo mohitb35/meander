@@ -1,0 +1,11 @@
+.login-needed-message {
+	background: white;
+	width: 90%;
+	max-width: 500px;
+	margin: 0 auto;
+	border-radius: 5px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
