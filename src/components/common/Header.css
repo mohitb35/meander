@@ -77,6 +77,16 @@ ul.nav-link-container {
 	color: #fbd94a;
 }
 
+.nav-link a:focus {
+	outline: transparent;
+	border: 2px solid #005fcc;
+	border-radius: 5px;
+}
+
+.nav-button {
+	text-align: center;
+}
+
 .nav-menu {
 	max-height: 0;
 	overflow: hidden;
@@ -128,5 +138,10 @@ ul.nav-link-container {
 
 	.nav-link a {
 		color: #333;
+	}
+
+	.nav-button {
+		margin-left: 20px;
+		border: none;
 	}
 }

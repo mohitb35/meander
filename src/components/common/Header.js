@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import './Header.css';
 import logo from '../../assets/logo-icon-2x.png';
+import UnsplashAuth from "./UnsplashAuth";
 
 class Header extends React.Component {
 	state = {
@@ -41,8 +42,8 @@ class Header extends React.Component {
 						<li className="nav-link">
 							<Link to="/liked">Liked</Link>
 						</li>
-						<li className="nav-link">
-							<Link to="/">Login</Link>
+						<li className="nav-button">
+							<UnsplashAuth />
 						</li>
 					</ul>
 				</nav>	

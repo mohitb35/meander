@@ -1,0 +1,32 @@
+.auth-button {
+	width: 100%;
+	appearance: none;
+	padding: 10px;
+	border: 1px solid #333333;
+	transition: all 0.2s ease-in-out;
+}
+
+.auth-button:hover {
+	background-color: #fbd94a;
+	color: #333333;
+	transform: scaleY(1.05);
+}
+
+.auth-button:focus {
+	background-color: #fbd94a;
+	color: #333333;
+	outline: transparent;
+	border: 2px solid #005fcc;
+}
+
+.auth-button {
+	color: #f7f7f7;
+	background-color: #333333;
+}
+
+@media (min-width: 769px) {
+	.auth-button {
+		width: auto;
+		border-radius: 5px;
+	}
+}

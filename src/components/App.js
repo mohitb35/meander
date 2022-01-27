@@ -8,6 +8,7 @@ import Home from "./home/Home";
 import CollectionList from "./collections/CollectionList";
 import LikedList from "./liked/LikedList";
 import Footer from "./common/Footer";
+import AuthLogic from "./auth/AuthLogic";
 
 const App = () => {
 	return (
@@ -15,9 +16,10 @@ const App = () => {
 			<BrowserRouter>
 				<Header />
 				<main>
-					<Route path="/" exact component={Home}/>
-					<Route path="/collections" exact component={CollectionList}/>
-					<Route path="/liked" exact component={LikedList}/>
+					<Route path="/" exact component={Home} />
+					<Route path="/collections" exact component={CollectionList} />
+					<Route path="/liked" exact component={LikedList} />
+					<Route path="/auth" exact component={AuthLogic} />
 				</main>
 				<Footer />
 			</BrowserRouter>
