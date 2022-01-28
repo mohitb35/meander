@@ -8,7 +8,7 @@ import { generateAuthorizeUrl } from "../../utils";
 
 const renderLogin = () => {
 	return (
-		<div class="login-needed-message">
+		<div className="login-needed-message">
 			<p>You must log in to access this feature.</p>
 			<a href={generateAuthorizeUrl()} >
 				<button className="auth-button">

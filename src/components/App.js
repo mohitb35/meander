@@ -6,7 +6,7 @@ import './App.css';
 import Header from "./common/Header";
 import Home from "./home/Home";
 import CollectionList from "./collections/CollectionList";
-import LikedList from "./liked/LikedList";
+import Likes from "./liked/Likes";
 import Footer from "./common/Footer";
 import AuthLogic from "./auth/AuthLogic";
 import PrivateRoute from "./auth/PrivateRoute";
@@ -19,7 +19,7 @@ const App = () => {
 				<main>
 					<Route path="/" exact component={Home} />
 					<PrivateRoute path="/collections" exact component={CollectionList} />
-					<PrivateRoute path="/liked" exact component={LikedList} />
+					<PrivateRoute path="/liked" exact component={Likes} />
 					<Route path="/auth" exact component={AuthLogic} />
 				</main>
 				<Footer />

@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 const unsplash = axios.create({
 	baseURL: 'https://api.unsplash.com',

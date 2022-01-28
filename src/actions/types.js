@@ -4,3 +4,7 @@ export const UPDATE_PAGE_SIZE = 'UPDATE_PAGE_SIZE';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';
 export const FAILED_SIGN_IN = 'FAILED_SIGN_IN';
+export const FETCH_USER_INFO = 'FETCH_USER_INFO';
+export const FETCH_LIKED_IMAGES = 'FETCH_LIKED_IMAGES';
+export const LIKE_IMAGE = 'LIKE_IMAGE';
+export const UNLIKE_IMAGE = 'UNLIKE_IMAGE';

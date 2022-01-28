@@ -2,7 +2,7 @@ import React from "react";
 
 import './Home.css';
 
-import ImageList from "./ImageList";
+import ImageList from "../imageList/ImageList";
 import SearchBar from "./SearchBar";
 import PagingBar from "./PagingBar";
 
@@ -14,7 +14,7 @@ class Home extends React.Component {
 					<SearchBar />
 					<PagingBar />
 				</div>
-				<ImageList />
+				<ImageList page="search"/>
 			</div>
 		);
 	}

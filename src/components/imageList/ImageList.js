@@ -10,7 +10,8 @@ class ImageList extends React.Component {
 		super();
 		this.resultsGridRef = React.createRef();
 		this.state = {
-			rowGap: 10
+			rowGap: 0,
+			rowHeight: 1
 		}
 	}
 
@@ -18,14 +19,18 @@ class ImageList extends React.Component {
 		const rowGap = parseInt(
 			window.getComputedStyle(this.resultsGridRef.current).getPropertyValue('grid-row-gap')
 			);
+		const rowHeight = parseInt(
+			window.getComputedStyle(this.resultsGridRef.current).getPropertyValue('grid-auto-rows')
+			);
 		this.setState({
-			rowGap
+			rowGap,
+			rowHeight
 		});
 	}
 
 	renderImageList(){
 		return this.props.images.map(image => {
-			return <ImageCard image={image} key={image.id} rowGap={this.state.rowGap}/>
+			return <ImageCard image={image} key={image.id} rowGap={this.state.rowGap} rowHeight={this.state.rowHeight}/>
 		})
 	}
 
@@ -38,10 +43,22 @@ class ImageList extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		images: state.images
+const mapStateToProps = (state, ownProps) => {
+	switch (ownProps.page) {
+		case "search":
+			return {
+				images: state.images
+			}
+		case "likes": 
+			return {
+				images: state.likedImages
+			}
+		default:
+			return {
+				images: []
+			}
 	}
+	
 }
 
 export default connect(
