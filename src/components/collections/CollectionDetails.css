@@ -1,0 +1,6 @@
+.collection-detail .page-config .collection-info {
+	flex: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}

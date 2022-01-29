@@ -1,17 +1,21 @@
 import { combineReducers } from 'redux';
 
 import authReducer from './authReducer';
-import imagesReducer from './imagesReducer';
-import likedImagesReducer from './likedImagesReducer';
+import collectionImageResultsReducer from './collectionImageResultsReducer';
+import collectionResultsReducer from './collectionResultsReducer';
+import searchResultsReducer from './searchResultsReducer';
+import likeResultsReducer from './likeResultsReducer';
 import pageSizeReducer from './pageSizeReducer';
 import searchTermReducer from './searchTermReducer';
 import userReducer from './userReducer';
 
 export default combineReducers({
-	images: imagesReducer,
-	likedImages: likedImagesReducer,
+	searchResults: searchResultsReducer,
+	likeResults: likeResultsReducer,
 	searchTerm: searchTermReducer,
 	pageSize: pageSizeReducer,
 	auth: authReducer,
-	user: userReducer
+	user: userReducer,
+	collectionResults: collectionResultsReducer,
+	collectionImageResults: collectionImageResultsReducer
 });

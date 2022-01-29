@@ -1,5 +1,5 @@
 import { 
-	FETCH_IMAGES, 
+	FETCH_SEARCH_RESULTS, 
 	UPDATE_SEARCH_TERM, 
 	UPDATE_PAGE_SIZE, 
 	SIGN_IN, 
@@ -8,37 +8,49 @@ import {
 	FETCH_USER_INFO,
 	FETCH_LIKED_IMAGES,
 	LIKE_IMAGE,
-	UNLIKE_IMAGE
+	UNLIKE_IMAGE,
+	FETCH_COLLECTIONS,
+	FETCH_COLLECTION_IMAGES
 } from "./types";
 
 import unsplash from '../apis/unsplash';
 import axios from 'axios';
 
-export const fetchImages = (searchTerm = "") => {
+export const fetchSearchResults = (currentPage = 1) => {
 	return async function(dispatch, getState) {
 		let images = [];
-		let authorizationHeader = 
+		let totalPages = 0;
+
+		const authorizationHeader = 
 			getState().auth.isSignedIn ? 
 			`Bearer ${getState().auth.accessToken['access_token']}`: 
-			`Client-ID ${process.env.REACT_APP_UNSPLASH_CLIENT_ID}`
+			`Client-ID ${process.env.REACT_APP_UNSPLASH_CLIENT_ID}`;
 
+		const searchTerm = getState().searchTerm;
+		
 		if (searchTerm.length > 0) {
 			const response = await unsplash.get('/search/photos', {
 				params: { 
 					query: searchTerm,
-					per_page: getState().pageSize
+					per_page: getState().pageSize,
+					page: currentPage
 				}, 
 				headers: {
 					Authorization: authorizationHeader
 				}
 			});
 			images = response.data.results;
+			totalPages = response.data.total_pages;
 		}
 		
 		// Dispatching action
 		dispatch ({
-			type: FETCH_IMAGES,
-			payload: images
+			type: FETCH_SEARCH_RESULTS,
+			payload: {
+				currentPage,
+				totalPages,
+				images
+			}
 		});
 	}
 };
@@ -119,12 +131,13 @@ export const fetchUserInfo = () => {
 	}
 }
 
-export const fetchLikedImages = () => {
+export const fetchLikedImages = (currentPage = 1) => {
 	return async function(dispatch, getState) {
 		const username = getState().user.username;
 		const response = await unsplash.get(`/users/${username}/likes`, {
 			params: { 
-				per_page: 10,
+				per_page: getState().pageSize,
+				page: currentPage
 			},
 			headers: { 
 				Authorization: `Bearer ${getState().auth.accessToken['access_token']}`
@@ -135,7 +148,10 @@ export const fetchLikedImages = () => {
 		// Dispatching action
 		dispatch ({
 			type: FETCH_LIKED_IMAGES,
-			payload: images
+			payload: {
+				currentPage,
+				images
+			}
 		});
 	}
 }
@@ -148,12 +164,14 @@ export const likeImage = (imageId) => {
 			}
 		});
 		
-		const likedPhoto = response.data.photo;
 
 		// Dispatching action
 		dispatch ({
 			type: LIKE_IMAGE,
-			payload: likedPhoto
+			payload: {
+				likedPhoto: response.date.photo,
+				updatedUser: response.data.user
+			}
 		})
 	}
 }
@@ -171,7 +189,61 @@ export const unlikeImage = (imageId) => {
 		// Dispatching action
 		dispatch ({
 			type: UNLIKE_IMAGE,
-			payload: unlikedPhoto
+			payload: {
+				unlikedPhoto: response.data.photo,
+				updatedUser: response.data.user
+			}
 		})
+	}
+}
+
+export const fetchCollections = (currentPage = 1) => {
+	return async function(dispatch, getState) {
+		const username = getState().user.username;
+		const response = await unsplash.get(`/users/${username}/collections`, {
+			params: { 
+				per_page: getState().pageSize,
+				page: currentPage
+			},
+			headers: { 
+				Authorization: `Bearer ${getState().auth.accessToken['access_token']}`
+			}
+		});
+		const collections = response.data;
+		
+		// Dispatching action
+		dispatch ({
+			type: FETCH_COLLECTIONS,
+			payload: {
+				currentPage,
+				collections
+			}
+		});
+	}
+}
+
+export const fetchCollectionImages = (collectionId, currentPage = 1) => {
+	return async function(dispatch, getState) {
+		const response = await unsplash.get(`/collections/${collectionId}/photos`, {
+			params: { 
+				per_page: getState().pageSize,
+				page: currentPage
+			},
+			headers: { 
+				Authorization: `Bearer ${getState().auth.accessToken['access_token']}`
+			}
+		});
+		const images = response.data;
+		
+		
+		// Dispatching action
+		dispatch ({
+			type: FETCH_COLLECTION_IMAGES,
+			payload: {
+				currentPage,
+				collectionId,
+				images
+			}
+		});
 	}
 }

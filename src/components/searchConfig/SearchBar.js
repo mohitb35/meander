@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { updateSearchTerm, fetchImages } from "../../actions";
+import { updateSearchTerm, fetchSearchResults } from "../../actions";
 
 import './SearchBar.css';
 
 class SearchBar extends React.Component {
 	handleFormSubmit = (event) => {
 		event.preventDefault();
-		this.props.fetchImages(this.props.searchTerm);
+		this.props.fetchSearchResults();
 	}
 
 	render() {
@@ -39,5 +39,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
 	mapStateToProps,
-	{ updateSearchTerm, fetchImages }
+	{ updateSearchTerm, fetchSearchResults }
 )(SearchBar);

@@ -47,11 +47,15 @@ const mapStateToProps = (state, ownProps) => {
 	switch (ownProps.page) {
 		case "search":
 			return {
-				images: state.images
+				images: state.searchResults.images
 			}
 		case "likes": 
 			return {
-				images: state.likedImages
+				images: state.likeResults.images
+			}
+		case "collection-details":
+			return {
+				images: state.collectionImageResults.images
 			}
 		default:
 			return {

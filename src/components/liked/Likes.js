@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fetchLikedImages, fetchImages } from "../../actions";
+import { fetchLikedImages } from "../../actions";
 
 import './Likes.css';
 
 import ImageList from "../imageList/ImageList";
-import PagingBar from "../home/PagingBar";
+import PagingBar from "../searchConfig/PagingBar";
 
 class LikedList extends React.Component {
 	componentDidMount() {
@@ -18,7 +18,7 @@ class LikedList extends React.Component {
 			<div className="likes">
 				<div className="page-config">
 					<h2>Your Likes</h2>
-					<PagingBar />
+					<PagingBar page="likes"/>
 				</div>
 				<ImageList page="likes"/>
 			</div>
@@ -28,5 +28,5 @@ class LikedList extends React.Component {
 
 export default connect(
 	null,
-	{ fetchLikedImages, fetchImages }
+	{ fetchLikedImages }
 )(LikedList);

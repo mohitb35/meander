@@ -3,8 +3,8 @@ import React from "react";
 import './Home.css';
 
 import ImageList from "../imageList/ImageList";
-import SearchBar from "./SearchBar";
-import PagingBar from "./PagingBar";
+import SearchBar from "../searchConfig/SearchBar";
+import PagingBar from "../searchConfig/PagingBar";
 
 class Home extends React.Component {
 	render() {
@@ -12,7 +12,7 @@ class Home extends React.Component {
 			<div className="home">
 				<div className="search-config">
 					<SearchBar />
-					<PagingBar />
+					<PagingBar page="search"/>
 				</div>
 				<ImageList page="search"/>
 			</div>
