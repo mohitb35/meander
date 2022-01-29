@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import ImageCard from "./ImageCard";
+import ShowImage from "./ShowImage";
 
 import './ImageList.css';
 
@@ -11,8 +12,18 @@ class ImageList extends React.Component {
 		this.resultsGridRef = React.createRef();
 		this.state = {
 			rowGap: 0,
-			rowHeight: 1
+			rowHeight: 1,
+			isModalActive: false,
+			currentImage: null
 		}
+	}
+
+	showImageModal = (image) => {
+		this.setState({ isModalActive: true, currentImage: image });
+	  }
+
+	hideImageModal = () => {
+		this.setState({ isModalActive: false, currentImage: null });
 	}
 
 	componentDidMount(){
@@ -30,15 +41,31 @@ class ImageList extends React.Component {
 
 	renderImageList(){
 		return this.props.images.map(image => {
-			return <ImageCard image={image} key={image.id} rowGap={this.state.rowGap} rowHeight={this.state.rowHeight}/>
+			return <ImageCard 
+				image={image} 
+				key={image.id} 
+				rowGap={this.state.rowGap} 
+				rowHeight={this.state.rowHeight} 
+				showImageModal={this.showImageModal} 
+				hideImageModal={this.hideImageModal}
+			/>
 		})
 	}
 
 	render() {
 		return (
-			<section id="results-grid" ref={this.resultsGridRef}>
-				{this.renderImageList()}
-			</section>
+			<React.Fragment>
+				<section id="results-grid" ref={this.resultsGridRef}>
+					{this.renderImageList()}
+				</section>
+				{this.state.isModalActive && 
+					<ShowImage  
+						hideImageModal={this.hideImageModal}
+						currentImage={this.state.currentImage}
+					/>
+				}
+			</React.Fragment>
+			
 		)
 	}
 }

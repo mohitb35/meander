@@ -51,7 +51,11 @@ class ImageCard extends React.Component {
 	render() {
 		let {urls, alt_description} = this.props.image;
 		return (
-			<article className="result-card" style={{ gridRowEnd: `span ${this.state.spans + 1}`  }}>
+			<article 
+				className="result-card" 
+				style={{ gridRowEnd: `span ${this.state.spans + 1}`  }} 
+				onClick={() => this.props.showImageModal(this.props.image)}
+			>
 				<div className="container" >
 					<img alt={alt_description} className="result-image" src={urls.small} ref={this.imageRef}/>
 					<h2 className="result-title">{alt_description}</h2>
