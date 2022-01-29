@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import './ImageCard.css';
 import LikeButton from "./LikeButton";
+import AddRemoveImageButton from "./AddRemoveImageButton";
 
 class ImageCard extends React.Component {
 	constructor() {
@@ -39,7 +40,7 @@ class ImageCard extends React.Component {
 			return (
 				<React.Fragment>
 					<div className="image-actions">
-						<button className="add-to-collection-button">Add to collection</button>
+						<AddRemoveImageButton page={this.props.page} imageId={imageId}/>
 						<LikeButton imageId={imageId} isLiked={isLiked} />
 					</div>
 					<div className="spacer"></div>
@@ -54,11 +55,10 @@ class ImageCard extends React.Component {
 			<article 
 				className="result-card" 
 				style={{ gridRowEnd: `span ${this.state.spans + 1}`  }} 
-				onClick={() => this.props.showImageModal(this.props.image)}
 			>
 				<div className="container" >
-					<img alt={alt_description} className="result-image" src={urls.small} ref={this.imageRef}/>
-					<h2 className="result-title">{alt_description}</h2>
+					<img alt={alt_description} className="result-image" src={urls.small} ref={this.imageRef} onClick={() => this.props.showImageModal(this.props.image)}/>
+					<h2 className="result-title" onClick={() => this.props.showImageModal(this.props.image)}>{alt_description}</h2>
 					{ this.renderImageActions() }
 				</div>
 			</article>

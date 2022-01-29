@@ -48,6 +48,7 @@ class ImageList extends React.Component {
 				rowHeight={this.state.rowHeight} 
 				showImageModal={this.showImageModal} 
 				hideImageModal={this.hideImageModal}
+				page={this.props.page}
 			/>
 		})
 	}

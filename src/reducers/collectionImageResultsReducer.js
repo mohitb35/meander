@@ -2,6 +2,7 @@ import {
 	FETCH_COLLECTIONS,
 	FETCH_COLLECTION_IMAGES, 
 	LIKE_IMAGE, 
+	REMOVE_IMAGE_FROM_COLLECTION, 
 	SIGN_OUT, 
 	UNLIKE_IMAGE 
 } from "../actions/types";
@@ -18,12 +19,17 @@ const collectionImageResultsReducer = (state = INITIAL_STATE, action) => {
 			return action.payload;
 		case FETCH_COLLECTIONS:
 			return INITIAL_STATE;
+		case REMOVE_IMAGE_FROM_COLLECTION:
+			return {
+				...state,
+				images: state.images.filter(image => image.id !== action.payload.removedPhoto.id)
+			}
 		case LIKE_IMAGE:
 		case UNLIKE_IMAGE:
 			return {
 				...state, 
 				images: state.images.map(image => {
-					return image.id === action.payload.id ? action.payload : image
+					return image.id === action.payload.photo.id ? action.payload.photo : image
 				})
 			}
 		case SIGN_OUT:

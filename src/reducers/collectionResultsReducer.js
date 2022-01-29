@@ -1,4 +1,4 @@
-import { DELETE_COLLECTION, FETCH_COLLECTIONS, SIGN_OUT } from "../actions/types";
+import { DELETE_COLLECTION, FETCH_COLLECTIONS, REMOVE_IMAGE_FROM_COLLECTION, SIGN_OUT } from "../actions/types";
 
 const INITIAL_STATE = {
 	currentPage: 1,
@@ -23,6 +23,11 @@ const collectionResultsReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				collections: newCollections
+			}
+		case REMOVE_IMAGE_FROM_COLLECTION: 
+			return {
+				...state,
+				collections: { ...state.collections, [action.payload.collection.id]: action.payload.collection }
 			}
 		case SIGN_OUT:
 			return INITIAL_STATE;

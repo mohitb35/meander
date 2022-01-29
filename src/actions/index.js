@@ -11,7 +11,8 @@ import {
 	UNLIKE_IMAGE,
 	FETCH_COLLECTIONS,
 	FETCH_COLLECTION_IMAGES,
-	DELETE_COLLECTION
+	DELETE_COLLECTION,
+	REMOVE_IMAGE_FROM_COLLECTION
 } from "./types";
 
 import unsplash from '../apis/unsplash';
@@ -170,8 +171,8 @@ export const likeImage = (imageId) => {
 		dispatch ({
 			type: LIKE_IMAGE,
 			payload: {
-				likedPhoto: response.date.photo,
-				updatedUser: response.data.user
+				photo: response.data.photo,
+				user: response.data.user
 			}
 		})
 	}
@@ -190,8 +191,8 @@ export const unlikeImage = (imageId) => {
 		dispatch ({
 			type: UNLIKE_IMAGE,
 			payload: {
-				unlikedPhoto: response.data.photo,
-				updatedUser: response.data.user
+				photo: response.data.photo,
+				user: response.data.user
 			}
 		})
 	}
@@ -260,6 +261,27 @@ export const deleteCollection = (collectionId) => {
 		dispatch ({
 			type: DELETE_COLLECTION,
 			payload: collectionId
+		});
+	}
+}
+export const removeImageFromCollection = (collectionId, imageId) => {
+	return async function(dispatch, getState) {
+		const response = await unsplash.delete(`/collections/${collectionId}/remove`, {
+			params: {
+				photo_id: imageId
+			},
+			headers: { 
+				Authorization: `Bearer ${getState().auth.accessToken['access_token']}`
+			}
+		});
+		
+		// Dispatching action
+		dispatch ({
+			type: REMOVE_IMAGE_FROM_COLLECTION,
+			payload: {
+				removedPhoto: response.data.photo,
+				collection: response.data.collection
+			}
 		});
 	}
 }
