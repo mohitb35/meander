@@ -3,10 +3,6 @@ import React from "react";
 import './CollectionCard.css';
 
 import { Link } from "react-router-dom";
-/* import { connect } from "react-redux";
-
-import './CollectionCard.css';
-import LikeButton from "./LikeButton"; */
 
 class CollectionCard extends React.Component {
 	renderCollectionActions() {
@@ -14,7 +10,12 @@ class CollectionCard extends React.Component {
 				<React.Fragment>
 					<div className="collection-actions">
 						<button className="edit-collection-button">Edit</button>
-						<button className="delete-collection-button">Delete</button>
+						<button 
+							className="delete-collection-button" 
+							onClick={
+								() => this.props.collectionActions.showDeleteModal(this.props.collection)
+							}
+						>Delete</button>
 					</div>
 				</React.Fragment>
 			)

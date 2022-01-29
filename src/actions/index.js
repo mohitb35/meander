@@ -10,7 +10,8 @@ import {
 	LIKE_IMAGE,
 	UNLIKE_IMAGE,
 	FETCH_COLLECTIONS,
-	FETCH_COLLECTION_IMAGES
+	FETCH_COLLECTION_IMAGES,
+	DELETE_COLLECTION
 } from "./types";
 
 import unsplash from '../apis/unsplash';
@@ -184,7 +185,6 @@ export const unlikeImage = (imageId) => {
 			}
 		});
 
-		const unlikedPhoto = response.data.photo;
 		
 		// Dispatching action
 		dispatch ({
@@ -244,6 +244,22 @@ export const fetchCollectionImages = (collectionId, currentPage = 1) => {
 				collectionId,
 				images
 			}
+		});
+	}
+}
+
+export const deleteCollection = (collectionId) => {
+	return async function(dispatch, getState) {
+		await unsplash.delete(`/collections/${collectionId}`, {
+			headers: { 
+				Authorization: `Bearer ${getState().auth.accessToken['access_token']}`
+			}
+		});
+		
+		// Dispatching action
+		dispatch ({
+			type: DELETE_COLLECTION,
+			payload: collectionId
 		});
 	}
 }

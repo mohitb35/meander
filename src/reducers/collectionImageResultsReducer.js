@@ -1,4 +1,5 @@
 import { 
+	FETCH_COLLECTIONS,
 	FETCH_COLLECTION_IMAGES, 
 	LIKE_IMAGE, 
 	SIGN_OUT, 
@@ -15,7 +16,7 @@ const collectionImageResultsReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case FETCH_COLLECTION_IMAGES:
 			return action.payload;
-		case SIGN_OUT:
+		case FETCH_COLLECTIONS:
 			return INITIAL_STATE;
 		case LIKE_IMAGE:
 		case UNLIKE_IMAGE:
@@ -25,6 +26,8 @@ const collectionImageResultsReducer = (state = INITIAL_STATE, action) => {
 					return image.id === action.payload.id ? action.payload : image
 				})
 			}
+		case SIGN_OUT:
+			return INITIAL_STATE;
 		default:
 			return state;	
 	}
