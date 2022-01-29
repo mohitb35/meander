@@ -19,12 +19,12 @@ const likeResultsReducer = (state = INITIAL_STATE, action) => {
 		case LIKE_IMAGE:
 			return {
 				...state,
-				images: [ ...state.images, action.payload ]
+				images: [ ...state.images, action.payload.photo ]
 			};
 		case UNLIKE_IMAGE:
 			return {
 				...state,
-				images: state.images.filter(image => image.id !== action.payload.id)
+				images: state.images.filter(image => image.id !== action.payload.photo.id)
 			};
 		default:
 			return state;	

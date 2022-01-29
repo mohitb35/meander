@@ -15,7 +15,7 @@ const searchResultsReducer = (state = INITIAL_STATE, action) => {
 			return { 
 				...state, 
 				images: state.images.map(image => {
-					return image.id === action.payload.id ? action.payload : image
+					return image.id === action.payload.photo.id ? action.payload.photo : image
 				}) 
 			}
 		default:
