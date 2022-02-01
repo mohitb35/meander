@@ -10,22 +10,29 @@ import PagingBar from "../searchConfig/PagingBar";
 
 class CollectionDetails extends React.Component {
 	componentDidMount() {
-		this.props.fetchCollectionImages(this.props.match.params.id);
+		let { id : collectionId } = this.props.match.params;
+		if (!this.props.collection){
+			this.props.fetchCollection(collectionId);
+		}
+		this.props.fetchCollectionImages(collectionId);
 	}
 
 	render() {
-		return (
-			<div className="collection-detail">
-				<div className="page-config">
-					<div className="collection-info">
-						<h2>{this.props.collection.title}</h2>
-						<p>{this.props.collection.description}</p>
+		if (this.props.collection) {
+			return (
+				<div className="collection-detail">
+					<div className="page-config">
+						<div className="collection-info">
+							<h2>{this.props.collection.title}</h2>
+							<p>{this.props.collection.description}</p>
+						</div>
+						<PagingBar page="collection-details" collectionId={this.props.match.params.id}/>
 					</div>
-					<PagingBar page="collection-details" collectionId={this.props.match.params.id}/>
+					<ImageList page="collection-details"/>
 				</div>
-				<ImageList page="collection-details"/>
-			</div>
-		)
+		) } else {
+			return <div>Loading...</div>
+		}
 	}
 }
 

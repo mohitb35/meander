@@ -10,11 +10,15 @@ import {
 	LIKE_IMAGE,
 	UNLIKE_IMAGE,
 	FETCH_COLLECTIONS,
+	FETCH_COLLECTION,
 	FETCH_COLLECTION_IMAGES,
 	DELETE_COLLECTION,
+	ADD_COLLECTION,
+	EDIT_COLLECTION,
 	ADD_IMAGE_TO_COLLECTION,
 	UPDATE_SELECTED_COLLECTION,
-	REMOVE_IMAGE_FROM_COLLECTION
+	REMOVE_IMAGE_FROM_COLLECTION,
+	SUCCESS_REDIRECT
 } from "./types";
 
 import unsplash from '../apis/unsplash';
@@ -225,6 +229,22 @@ export const fetchCollections = (currentPage = 1) => {
 	}
 }
 
+export const fetchCollection = (collectionId) => {
+	return async function(dispatch, getState) {
+		const response = await unsplash.get(`/collections/${collectionId}`, {
+			headers: { 
+				Authorization: `Bearer ${getState().auth.accessToken['access_token']}`
+			}
+		});
+		
+		// Dispatching action
+		dispatch ({
+			type: FETCH_COLLECTION,
+			payload: response.data //collection
+		});
+	}
+}
+
 export const fetchCollectionImages = (collectionId, currentPage = 1) => {
 	return async function(dispatch, getState) {
 		const response = await unsplash.get(`/collections/${collectionId}/photos`, {
@@ -266,6 +286,62 @@ export const deleteCollection = (collectionId) => {
 		});
 	}
 }
+
+export const createCollection = (formValues, successUrl) => {
+	return async function(dispatch, getState) {
+		try {
+			const response = await unsplash.post("/collections", 
+				{ ...formValues },
+				{ headers: { 
+					Authorization: `Bearer ${getState().auth.accessToken['access_token']}`
+				}
+			});
+			
+			// Dispatching action
+			dispatch ({
+				type: ADD_COLLECTION,
+				payload: response.data
+			});
+
+			dispatch(redirect(successUrl));
+		} catch(error) {
+			console.log(error);
+		}
+	}
+}
+
+export const updateCollection = (collectionId, formValues, successUrl) => {
+	return async function(dispatch, getState) {
+		try {
+			const response = await unsplash.put(`/collections/${collectionId}`, 
+				{ ...formValues },
+				{ headers: { 
+					Authorization: `Bearer ${getState().auth.accessToken['access_token']}`
+				}
+			});
+			
+			// Dispatching action
+			dispatch ({
+				type: EDIT_COLLECTION,
+				payload: response.data
+			});
+
+			dispatch(redirect(successUrl));
+
+		} catch(error) {
+			console.log(error);
+		}
+		
+	}
+}
+
+export const redirect = (link) => {
+	return {
+		type: SUCCESS_REDIRECT,
+		payload: link
+	}
+}
+
 export const addImageToCollection = (collectionId, imageId) => {
 	return async function(dispatch, getState) {
 		const response = await unsplash.post(`/collections/${collectionId}/add`, 

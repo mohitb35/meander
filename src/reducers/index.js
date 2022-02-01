@@ -20,5 +20,6 @@ export default combineReducers({
 	user: userReducer,
 	collectionResults: collectionResultsReducer,
 	collectionImageResults: collectionImageResultsReducer,
-	selectedCollection: selectedCollectionReducer
+	selectedCollection: selectedCollectionReducer,
+	redirectTo: redirectReducer
 });

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { fetchCollections } from "../../actions";
 
@@ -30,6 +31,11 @@ class Collections extends React.Component {
 	render() {
 		return (
 			<div className="collections">
+				<Link to="/collections/add" >
+					<button className="create-collection-button">
+						Create New Collection
+					</button>
+				</Link>
 				<div className="page-config">
 					<h2>Your Collections</h2>
 					<PagingBar page="collections"/>

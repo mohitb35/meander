@@ -1,4 +1,4 @@
-import { DELETE_COLLECTION, FETCH_COLLECTIONS, REMOVE_IMAGE_FROM_COLLECTION, SIGN_OUT } from "../actions/types";
+import { ADD_COLLECTION, ADD_IMAGE_TO_COLLECTION, DELETE_COLLECTION, EDIT_COLLECTION, FETCH_COLLECTION, FETCH_COLLECTIONS, REMOVE_IMAGE_FROM_COLLECTION, SIGN_OUT } from "../actions/types";
 
 const INITIAL_STATE = {
 	currentPage: 1,
@@ -17,6 +17,21 @@ const collectionResultsReducer = (state = INITIAL_STATE, action) => {
 					{}
 				)} 
 			};
+		case FETCH_COLLECTION:
+			return {
+				...state,
+				collections: { ...state.collections, [action.payload.id]: action.payload }
+			}
+		case ADD_COLLECTION: 
+			return {
+				...state,
+				collections: { ...state.collections, [action.payload.id]: action.payload }
+			}
+		case EDIT_COLLECTION:
+			return {
+				...state,
+				collections: { ...state.collections, [action.payload.id]: action.payload }
+			}
 		case DELETE_COLLECTION:
 			const newCollections = { ...state.collections };
 			delete newCollections[action.payload];

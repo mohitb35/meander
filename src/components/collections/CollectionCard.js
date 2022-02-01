@@ -9,7 +9,9 @@ class CollectionCard extends React.Component {
 			return (
 				<React.Fragment>
 					<div className="collection-actions">
-						<button className="edit-collection-button">Edit</button>
+						<Link to={`/collections/edit/${this.props.collection.id}`} >
+							<button className="edit-collection-button">Edit</button>
+						</Link>
 						<button 
 							className="delete-collection-button" 
 							onClick={
@@ -30,7 +32,9 @@ class CollectionCard extends React.Component {
 		return (
 			<article className="collection-card">				
 				<Link to={`/collections/${id}`}> 
-					<img alt={alt_description} className="collection-image" src={urls.small} />
+					{cover_photo && 
+						<img alt={alt_description} className="collection-image" src={urls.small} />
+					}
 					<h2 className="collection-title">{title}</h2>
 				</Link>
 				{ this.renderCollectionActions() }
