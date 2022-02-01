@@ -82,7 +82,7 @@ export const updatePageSize = (pageSize) => {
 export const fetchAccessToken = (code) => {
 	return async function(dispatch) {
 		const data = {
-			redirect_uri: 'http://localhost:3000/auth', 
+			redirect_uri: "https://meanderr.herokuapp.com/auth", 
 			grant_type: "authorization_code",
 			code
 		}
