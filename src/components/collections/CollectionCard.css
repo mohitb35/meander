@@ -15,6 +15,16 @@
 	object-fit: cover;
 }
 
+.no-image-block {
+	height: 200px;
+	line-height: 200px;
+	width: 100%;
+	background-color: #d7d7d7;
+	font-size: 1.25rem;
+	text-transform: uppercase;
+	text-align: center;
+}
+
 .collection-title {
 	padding: 10px;
 	font-size: 1.25rem;

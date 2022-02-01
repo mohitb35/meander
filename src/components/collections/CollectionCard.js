@@ -35,6 +35,9 @@ class CollectionCard extends React.Component {
 					{cover_photo && 
 						<img alt={alt_description} className="collection-image" src={urls.small} />
 					}
+					{!cover_photo && 
+						<div className="no-image-block">No images added</div>
+					}
 					<h2 className="collection-title">{title}</h2>
 				</Link>
 				{ this.renderCollectionActions() }

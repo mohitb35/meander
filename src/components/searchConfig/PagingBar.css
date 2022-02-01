@@ -43,12 +43,6 @@
 	transform: none;
 }
 
-#page-nav button.selected:disabled {
-	background-color: #fbd94a;
-	color: #333333;
-	opacity: 1;
-}
-
 #btn-next-page {
 	color: #f7f7f7;
 	background-color: #333333;

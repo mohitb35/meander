@@ -22,7 +22,7 @@ import {
 } from "./types";
 
 import unsplash from '../apis/unsplash';
-import axios from 'axios';
+import unsplashProxy from '../apis/unsplashProxy';
 
 export const fetchSearchResults = (currentPage = 1) => {
 	return async function(dispatch, getState) {
@@ -32,12 +32,12 @@ export const fetchSearchResults = (currentPage = 1) => {
 		const authorizationHeader = 
 			getState().auth.isSignedIn ? 
 			`Bearer ${getState().auth.accessToken['access_token']}`: 
-			`Client-ID ${process.env.REACT_APP_UNSPLASH_CLIENT_ID}`;
+			"Client-ID";
 
 		const searchTerm = getState().searchTerm;
 		
 		if (searchTerm.length > 0) {
-			const response = await unsplash.get('/search/photos', {
+			const response = await unsplashProxy.get("/search/photos", {
 				params: { 
 					query: searchTerm,
 					per_page: getState().pageSize,
@@ -81,8 +81,6 @@ export const updatePageSize = (pageSize) => {
 
 export const fetchAccessToken = (code) => {
 	return async function(dispatch) {
-		const oauthTokenUrl = "https://meander-api.herokuapp.com/oauth/token";
-
 		const data = {
 			redirect_uri: 'http://localhost:3000/auth', 
 			grant_type: "authorization_code",
@@ -90,7 +88,7 @@ export const fetchAccessToken = (code) => {
 		}
 		
 		try {
-			const response = await axios.post(oauthTokenUrl, data);
+			const response = await unsplashProxy.post("/oauth/token", data);
 			// Dispatching action
 			dispatch(signIn(response.data));
 			dispatch(fetchUserInfo());
