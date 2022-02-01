@@ -7,14 +7,14 @@ import './AddRemoveImageButton.css';
 
 class AddRemoveImageButton extends React.Component {
 	handleAddImage = () => {
-		// this.props.likeImage(this.props.imageId);
+		this.props.showAddToCollectionModal(this.props.image);
 	}
 
 	handleRemoveImage = () => {
 		this.props.removeImageFromCollection(
 			this.props.collectionId, 
-			this.props.imageId
-			);
+			this.props.image.id
+		);
 	}
 
 	renderButton() {
@@ -26,9 +26,9 @@ class AddRemoveImageButton extends React.Component {
 			)
 		} else {
 			return (
-				<button className="add-to-collection-button">Add to collection</button>
+				<button className="add-to-collection-button" onClick={this.handleAddImage}>Add to collection</button>
 			)
-			}
+		}
 	}
 
 	render() {
@@ -43,7 +43,7 @@ const mapStateToProps = (state, ownProps) => {
 				collectionId: state.collectionImageResults.collectionId
 			};
 		default:
-			return null;
+			return {};
 	}
 }
 

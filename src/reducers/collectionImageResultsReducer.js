@@ -1,4 +1,5 @@
 import { 
+	ADD_IMAGE_TO_COLLECTION,
 	FETCH_COLLECTIONS,
 	FETCH_COLLECTION_IMAGES, 
 	LIKE_IMAGE, 
@@ -24,6 +25,15 @@ const collectionImageResultsReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				images: state.images.filter(image => image.id !== action.payload.removedPhoto.id)
 			}
+		case ADD_IMAGE_TO_COLLECTION:
+			if (action.payload.collectionId === state.collectionId) {
+				return {
+					...state,
+					images: [...state.images, action.payload.addedPhoto ]
+				}
+			} else {
+				return state;
+			} 
 		case LIKE_IMAGE:
 		case UNLIKE_IMAGE:
 			return {

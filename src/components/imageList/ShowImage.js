@@ -26,6 +26,7 @@ class ShowImage extends React.Component {
 				<Modal 
 					dismiss={this.props.hideImageModal}
 					content={this.renderContent()}
+					type="image"
 				/>
 			</div>
 		)

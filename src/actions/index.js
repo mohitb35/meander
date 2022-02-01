@@ -12,6 +12,8 @@ import {
 	FETCH_COLLECTIONS,
 	FETCH_COLLECTION_IMAGES,
 	DELETE_COLLECTION,
+	ADD_IMAGE_TO_COLLECTION,
+	UPDATE_SELECTED_COLLECTION,
 	REMOVE_IMAGE_FROM_COLLECTION
 } from "./types";
 
@@ -264,6 +266,34 @@ export const deleteCollection = (collectionId) => {
 		});
 	}
 }
+export const addImageToCollection = (collectionId, imageId) => {
+	return async function(dispatch, getState) {
+		const response = await unsplash.post(`/collections/${collectionId}/add`, 
+			{ photo_id: imageId },
+			{ headers: { 
+				Authorization: `Bearer ${getState().auth.accessToken['access_token']}`
+			}
+		});
+		
+		// Dispatching action
+		dispatch ({
+			type: ADD_IMAGE_TO_COLLECTION,
+			payload: {
+				addedPhoto: response.data.photo,
+				collection: response.data.collection
+			}
+		});
+	}
+}
+
+export const updateSelectedCollection = (collectionId) => {
+	// Returning action
+	return {
+		type: UPDATE_SELECTED_COLLECTION,
+		payload: collectionId
+	};
+};
+
 export const removeImageFromCollection = (collectionId, imageId) => {
 	return async function(dispatch, getState) {
 		const response = await unsplash.delete(`/collections/${collectionId}/remove`, {

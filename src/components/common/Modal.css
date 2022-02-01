@@ -29,9 +29,14 @@ body.modal-open {
 	margin: 0 auto;
 }
 
+.modal.alert .modal-wrapper {
+	width: 90%;
+	max-width: 500px;
+}
+
 .close {
 	font-size: 2rem;
-	font-style: bold;
+	font-style: normal;
 	color: white;
 	padding: 0 10px;
 	background-color: orange;
@@ -50,20 +55,27 @@ body.modal-open {
 	width: 100%;
 }
 
+.modal.image .modal-contents {
+	padding: 0;
+}
+
 .modal-contents .header {
 	font-size: 1.25rem;
-	font-weight: 700;
+	font-weight: 500;
 }
 
 .modal-contents .content p {
 	font-size: 1rem;
 	font-weight: 400;
-	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.modal.image .modal-contents .content p {
+	margin-bottom: 0;
 }
 
 .modal-contents .modal-content-highlight {
 	font-style: italic;
-	font-weight: bold;
 }
 
 .modal .actions {
@@ -97,6 +109,17 @@ body.modal-open {
 	background-color: #ec102d;
 }
 
+.button-positive {
+	color: #333333;
+	background-color: #fbd94a;
+}
+
 .button-cancel {
 	background-color: #c7c7c7;
+}
+
+.modal .actions button:disabled {
+	opacity: 60%;
+	pointer-events: none;
+	transform: none;
 }

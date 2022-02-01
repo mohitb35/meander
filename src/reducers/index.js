@@ -8,6 +8,8 @@ import likeResultsReducer from './likeResultsReducer';
 import pageSizeReducer from './pageSizeReducer';
 import searchTermReducer from './searchTermReducer';
 import userReducer from './userReducer';
+import selectedCollectionReducer from './selectedCollectionReducer';
+import redirectReducer from './redirectReducer';
 
 export default combineReducers({
 	searchResults: searchResultsReducer,
@@ -17,5 +19,6 @@ export default combineReducers({
 	auth: authReducer,
 	user: userReducer,
 	collectionResults: collectionResultsReducer,
-	collectionImageResults: collectionImageResultsReducer
+	collectionImageResults: collectionImageResultsReducer,
+	selectedCollection: selectedCollectionReducer
 });

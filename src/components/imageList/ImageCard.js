@@ -10,8 +10,7 @@ class ImageCard extends React.Component {
 		super();
 		this.imageRef = React.createRef();
 		this.state = {
-			spans: 0,
-			previouslySignedIn: false
+			spans: 0
 		}
 	}
 	
@@ -40,7 +39,11 @@ class ImageCard extends React.Component {
 			return (
 				<React.Fragment>
 					<div className="image-actions">
-						<AddRemoveImageButton page={this.props.page} imageId={imageId}/>
+						<AddRemoveImageButton 
+							page={this.props.page} 
+							image={this.props.image}
+							showAddToCollectionModal={this.props.showAddToCollectionModal}
+						/>
 						<LikeButton imageId={imageId} isLiked={isLiked} />
 					</div>
 					<div className="spacer"></div>

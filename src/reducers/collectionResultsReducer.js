@@ -24,7 +24,8 @@ const collectionResultsReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				collections: newCollections
 			}
-		case REMOVE_IMAGE_FROM_COLLECTION: 
+		case REMOVE_IMAGE_FROM_COLLECTION:
+		case ADD_IMAGE_TO_COLLECTION: 
 			return {
 				...state,
 				collections: { ...state.collections, [action.payload.collection.id]: action.payload.collection }

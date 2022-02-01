@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import ImageCard from "./ImageCard";
 import ShowImage from "./ShowImage";
+import AddToCollection from "./AddToCollection";
 
 import './ImageList.css';
 
@@ -13,18 +14,29 @@ class ImageList extends React.Component {
 		this.state = {
 			rowGap: 0,
 			rowHeight: 1,
-			isModalActive: false,
+			isImageModalActive: false,
+			isAddToCollectionModalActive: false,
 			currentImage: null
 		}
 	}
 
 	showImageModal = (image) => {
-		this.setState({ isModalActive: true, currentImage: image });
+		this.setState({ isImageModalActive: true, currentImage: image });
 	  }
 
 	hideImageModal = () => {
-		this.setState({ isModalActive: false, currentImage: null });
+		this.setState({ isImageModalActive: false, currentImage: null });
 	}
+
+	showAddToCollectionModal = (image) => {
+		this.setState({ isAddToCollectionModalActive: true, currentImage: image });
+	  }
+
+	hideAddToCollectionModal = () => {
+		this.setState({ isAddToCollectionModalActive: false, currentImage: null });
+	}
+
+
 
 	componentDidMount(){
 		const rowGap = parseInt(
@@ -47,7 +59,7 @@ class ImageList extends React.Component {
 				rowGap={this.state.rowGap} 
 				rowHeight={this.state.rowHeight} 
 				showImageModal={this.showImageModal} 
-				hideImageModal={this.hideImageModal}
+				showAddToCollectionModal={this.showAddToCollectionModal} 
 				page={this.props.page}
 			/>
 		})
@@ -59,9 +71,15 @@ class ImageList extends React.Component {
 				<section id="results-grid" ref={this.resultsGridRef}>
 					{this.renderImageList()}
 				</section>
-				{this.state.isModalActive && 
+				{this.state.isImageModalActive && 
 					<ShowImage  
 						hideImageModal={this.hideImageModal}
+						currentImage={this.state.currentImage}
+					/>
+				}
+				{this.state.isAddToCollectionModalActive && 
+					<AddToCollection
+						hideAddToCollectionModal={this.hideAddToCollectionModal}
 						currentImage={this.state.currentImage}
 					/>
 				}

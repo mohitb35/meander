@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { deleteCollection } from '../../actions'
+import { deleteCollection } from '../../actions';
 
 import Modal from "../common/Modal";
 
@@ -24,7 +24,7 @@ class DeleteCollection extends React.Component {
 		return (
 			<React.Fragment>
 				<p>Are you sure you want to delete this collection?</p>
-				<p class="modal-content-highlight">{this.props.currentCollection.title}</p>
+				<p className="modal-content-highlight">{this.props.currentCollection.title}</p>
 			</React.Fragment>
 			 
 		)
@@ -38,13 +38,12 @@ class DeleteCollection extends React.Component {
 					title="Delete Collection"
 					content={this.renderContent()}
 					actions={this.renderActions()}
+					type="alert"
 				/>
 			</div>
 		)
 	}
 };
-
-
 
 export default connect(
 	null,
