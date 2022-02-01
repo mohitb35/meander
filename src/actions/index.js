@@ -82,8 +82,8 @@ export const updatePageSize = (pageSize) => {
 export const fetchAccessToken = (code) => {
 	return async function(dispatch) {
 		const data = {
-			redirect_uri: "http://localhost:3000/auth", 
-			// redirect_uri: "https://meander.vercel.app/auth", 
+			// redirect_uri: "http://localhost:3000/auth", 
+			redirect_uri: "https://meander.vercel.app/auth", 
 			grant_type: "authorization_code",
 			code
 		}

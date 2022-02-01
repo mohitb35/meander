@@ -1,5 +1,5 @@
-// const redirectUrl = encodeURIComponent("https://meander.vercel.app/auth");
-const redirectUrl = encodeURIComponent("http://localhost:3000/auth");
+const redirectUrl = encodeURIComponent("https://meander.vercel.app/auth");
+// const redirectUrl = encodeURIComponent("http://localhost:3000/auth");
 const oauthAuthorizeUrl = "https://meander-api.herokuapp.com/oauth/authorize";
 const responseType = "code";
 
