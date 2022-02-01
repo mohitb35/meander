@@ -82,7 +82,7 @@ export const updatePageSize = (pageSize) => {
 export const fetchAccessToken = (code) => {
 	return async function(dispatch) {
 		const data = {
-			redirect_uri: "https://mohitb35.github.io/meander/auth", 
+			redirect_uri: "https://meander.vercel.app/auth", 
 			grant_type: "authorization_code",
 			code
 		}
