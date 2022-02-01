@@ -20,14 +20,9 @@
     "web-vitals": "^2.1.3"
   },
   "scripts": {
-<<<<<<< HEAD
 	"dev": "react-scripts start",
     "start": "serve -s build",
     "build": "react-scripts build",
-=======
-    "start": "react-scripts start",
-    "build": "serve -s build",
->>>>>>> 8eadb6ec8fe7db1a67a3edafb7441f360f16faa6
     "test": "react-scripts test",
     "eject": "react-scripts eject",
 	"heroku-postbuild": "npm run build"
